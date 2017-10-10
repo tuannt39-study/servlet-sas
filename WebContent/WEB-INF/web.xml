@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+		xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+		id="WebApp_ID" version="3.1">
+		<display-name>ServletSAS</display-name>
+
+<!-- 	Bỏ qua Expression language EL, hoặc cấu trình trong jsp
+		<jsp-config>
+			<jsp-property-group>
+				<url-pattern>.jsp</url-pattern>
+				<el-ignored>false</el-ignored>
+			</jsp-property-group>
+		</jsp-config> -->
+
+		<listener>
+			<listener-class>vn.hkd.servlet.Listener.WebsiteSession
+			</listener-class>
+		</listener>
+
+		<session-config>
+			<!-- Sét thời gian session theo phút -->
+			<session-timeout>15</session-timeout>
+		</session-config>
+
+		<context-param>
+			<param-name>account</param-name>
+			<param-value>tuan</param-value>
+		</context-param>
+		<context-param>
+			<param-name>password</param-name>
+			<param-value>1234</param-value>
+		</context-param>
+
+		<servlet>
+			<servlet-name>Hello World</servlet-name>
+			<servlet-class>vn.hkd.servlet.HelloWorld</servlet-class>
+			<init-param>
+				<param-name>song</param-name>
+				<param-value>I Love You</param-value>
+			</init-param>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Hello World</servlet-name>
+			<url-pattern>/hello</url-pattern>
+		</servlet-mapping>
+		<servlet>
+			<servlet-name>Authentication</servlet-name>
+			<servlet-class>vn.hkd.servlet.controller.Authentication
+			</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Authentication</servlet-name>
+			<url-pattern>/login</url-pattern>
+		</servlet-mapping>
+
+		<servlet>
+			<servlet-name>Sample</servlet-name>
+			<jsp-file>/WEB-INF/views/sample.jsp</jsp-file>
+			<init-param>
+				<param-name>Blog</param-name>
+				<param-value>Study And Share</param-value>
+			</init-param>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>Sample</servlet-name>
+			<url-pattern>/sample</url-pattern>
+		</servlet-mapping>
+	</web-app>
